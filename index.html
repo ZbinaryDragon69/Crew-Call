@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crew Call – film crew and vacancies in Melbourne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF0F2;--surface:#FFFFFF;--ink:#15171C;--muted:#5B616B;--line:#D3D7DC;--rec:#D8281F;--rec-ink:#FFFFFF;--paid:#12714A;--paid-bg:#DDF2E8;--free:#6A4A00;--free-bg:#F7EBC9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161A;--surface:#1D2026;--ink:#ECEEF1;--muted:#9AA1AC;--line:#2E333B;--rec:#FF5A4F;--rec-ink:#15171C;--paid:#6FD7A5;--paid-bg:#17382B;--free:#F0CD7A;--free-bg:#3A2F10;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161A;--surface:#1D2026;--ink:#ECEEF1;--muted:#9AA1AC;--line:#2E333B;--rec:#FF5A4F;--rec-ink:#15171C;--paid:#6FD7A5;--paid-bg:#17382B;--free:#F0CD7A;--free-bg:#3A2F10;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Instrument Sans",sans-serif;margin:0;line-height:1.05;letter-spacing:-.02em}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--rec);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.bar{max-width:1040px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.logo{font:800 22px "Bricolage Grotesque",sans-serif;display:flex;align-items:center;gap:9px;letter-spacing:-.03em}
+.dot{width:13px;height:13px;border-radius:50%;background:var(--rec);animation:blink 1.6s steps(2,start) 4}
+@keyframes blink{50%{opacity:.15}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav button{background:none;border:0;padding:8px 14px;border-radius:99px;cursor:pointer;font-weight:500;color:var(--muted)}
+nav button[aria-current=page]{background:var(--ink);color:var(--bg)}
+main{max-width:1040px;margin:0 auto;padding:28px 20px 80px}
+.hero{padding:18px 0 26px}
+.hero h1{font-size:clamp(38px,7vw,72px);font-weight:800;max-width:14ch}
+.hero p{color:var(--muted);max-width:52ch;margin:14px 0 0;font-size:18px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 20px}
+.filters input,.filters select,.f input,.f select,.f textarea{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;width:100%}
+.filters input{flex:2 1 220px;width:auto}.filters select{flex:1 1 140px;width:auto}
+.count{color:var(--muted);margin:0 0 12px}
+.list{display:grid;gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:10px}
+.card .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.card h3{font-size:24px}
+.by{color:var(--muted);font-size:14px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--muted)}
+.logline{margin:0;font-style:italic}
+.tag{display:inline-block;padding:3px 10px;border-radius:99px;font-size:13px;font-weight:600}
+.paid{background:var(--paid-bg);color:var(--paid)}.unpaid{background:var(--free-bg);color:var(--free)}
+.gear{font-size:14px;border-left:3px solid var(--line);padding-left:10px;color:var(--muted)}
+.btn{background:var(--rec);color:var(--rec-ink);border:0;border-radius:10px;padding:10px 18px;min-height:44px;font-weight:600;cursor:pointer}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+.btn[disabled]{background:var(--line);color:var(--muted);cursor:default}
+.empty{padding:40px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}
+.f{display:grid;gap:16px;max-width:620px}
+.f label{display:grid;gap:6px;font-weight:600;font-size:15px}
+.f small,.hint{font-weight:400;color:var(--muted);font-size:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.seg{display:flex;gap:8px}
+.seg label{flex:1;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:10px;min-height:44px;cursor:pointer;background:var(--surface)}
+.seg input{position:absolute;opacity:0}
+.seg label:has(input:checked){background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg label:has(input:focus-visible){outline:3px solid var(--rec)}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;max-width:620px}
+.note h3{font-size:19px;margin-bottom:6px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:var(--bg);border:1px solid var(--line);padding:2px 10px;border-radius:99px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.chk{display:flex!important;grid-template-columns:none;align-items:center;gap:10px;font-weight:400!important}
+.chk input{width:20px;min-height:20px;height:20px}
+dialog{border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);padding:24px;width:min(480px,92vw)}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:99px;font-weight:500;z-index:20}
+.toast[hidden]{display:none}
+.sec{margin:0 0 6px;font-size:30px}
+#gate{position:fixed;inset:0;display:flex;background:var(--bg);z-index:50;padding:20px}
+body:not(.locked) #gate{display:none}
+body.locked header,body.locked main{display:none}
+</style>
+</head>
+<body class="locked">
+<div id="gate" role="dialog" aria-labelledby="gt"><form id="gf" class="f" style="margin:auto;padding:28px;background:var(--surface);border:1px solid var(--line);border-radius:16px;width:min(420px,92vw)">
+<h1 id="gt" style="font-size:34px">Crew Call</h1><p class="hint" style="margin:0">This site is private. Enter the password to continue.</p>
+<label>Password<input type="password" id="gp" autocomplete="current-password" required></label>
+<p id="ge" role="alert" class="hint" style="color:var(--rec);margin:0"></p><button class="btn" type="submit">Enter</button></form></div>
+<script>
+(()=>{const H="671d8bc0332804d696cff2a59ae2f1524a6f6f6e1a09e9ebd4b18682d755ee78";
+const hash=async t=>[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode("crewcall:"+t)))].map(b=>b.toString(16).padStart(2,"0")).join("");
+const open=()=>document.body.classList.remove("locked"),msg=document.getElementById("ge");
+let saved="";try{saved=localStorage.getItem("cc_ok")||""}catch(e){}
+if(saved===H)open();
+document.getElementById("gf").onsubmit=async e=>{e.preventDefault();
+ if(!window.crypto||!crypto.subtle){msg.textContent="Please open this page over https.";return}
+ const h=await hash(document.getElementById("gp").value.trim());
+ if(h===H){try{localStorage.setItem("cc_ok",H)}catch(e){}open()}else{msg.textContent="That password isn’t right."}};})();
+</script>
+<header><div class="bar">
+  <div class="logo"><span class="dot" aria-hidden="true"></span>Crew Call</div>
+  <nav aria-label="Main">
+    <button data-v="jobs">Find work</button>
+    <button data-v="crew">Find crew</button>
+    <button data-v="post">Post a vacancy</button>
+    <button data-v="profile">My profile</button>
+    <button data-v="login" id="authBtn">Log in</button>
+  </nav>
+</div></header>
+<main id="app"></main>
+<div class="toast" id="toast" role="status" hidden></div>
+<dialog id="dlg"><form method="dialog" id="applyForm">
+  <h2 id="dTitle" style="font-size:26px;margin-bottom:6px"></h2>
+  <p class="hint" id="dSub" style="margin:0 0 14px"></p>
+  <label style="display:grid;gap:6px;font-weight:600">Message to the filmmaker
+    <textarea id="dMsg" rows="4" style="background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;width:100%" placeholder="Your recent credits, availability and gear you can bring."></textarea></label>
+  <p class="hint">Your profile, showreel and portfolio links are sent with this message.</p>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px">
+    <button class="btn ghost" value="cancel">Cancel</button>
+    <button class="btn" value="send" id="dSend">Send application</button></div>
+</form></dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+<script>
+/* STEP 1: paste your values from Supabase > Project Settings > API (anon key only, never service_role) */
+const SUPABASE_URL="YOUR_PROJECT_URL",SUPABASE_ANON_KEY="YOUR_ANON_KEY";
+const CONFIGURED=!SUPABASE_URL.includes("YOUR_");
+const sb=CONFIGURED?supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;
+const ROLES=["Director","Producer","DOP","1st AC","2nd AC","Gaffer","Sound recordist","Boom operator","Editor","Colourist","Production designer","Make-up/Hair","Runner/PA","Actor","Composer"];
+let jobs=[
+{id:1,role:"2nd Assistant Camera",title:"Salt Flats",by:"Mara Okonkwo",date:"2026-12-06",loc:"Brunswick, VIC",logline:"A night-shift cleaner finds a tape that predicts the next day’s weather.",paid:false,gear:"Own slate and a clipboard are handy; lunch and travel provided."},
+{id:2,role:"Gaffer",title:"The Last Tram Home",by:"Daniel Vo",date:"2026-12-13",loc:"Footscray, VIC",logline:"Two strangers share the final tram of a city that is about to go quiet.",paid:true,gear:"Must bring own light meter. Lighting kit supplied. $350 per day."},
+{id:3,role:"Sound recordist",title:"Quarry Road",by:"Priya Nair",date:"2027-01-10",loc:"Geelong, VIC",logline:"",paid:true,gear:"Own recorder and shotgun mic. $400 per day plus kit fee."},
+{id:4,role:"Runner/PA",title:"Hold Still",by:"Studio Ember",date:"2026-12-20",loc:"Collingwood, VIC",logline:"A 15-minute drama shot over two days in one apartment.",paid:false,gear:"No gear needed. Great first set, credit and showreel footage."},
+{id:5,role:"Colourist",title:"Neon Orchard",by:"Jules Henderson",date:"2027-02-03",loc:"Remote",logline:"A music-video short with a lot of practical lights.",paid:true,gear:"DaVinci Resolve. Remote grade, 3 days turnaround."},
+{id:6,role:"Actor",title:"Fifty Metres",by:"Tom Aziz",date:"2026-12-28",loc:"St Kilda, VIC",logline:"A swim coach has one last lesson to give.",paid:false,gear:"Must be comfortable in water. Female lead, 30s to 50s."}];
+let crew=[
+{name:"Sam Whitlock",suburb:"Fitzroy",years:10,roles:["DOP","Gaffer"],bio:"Ten years on shorts and commercials. Own Alexa Mini LF kit.",reel:true},
+{name:"Aiko Tanaka",suburb:"Richmond",years:4.5,roles:["Editor","Colourist"],bio:"Fast turnarounds, Premiere and Resolve.",reel:true},
+{name:"Leo Marchetti",suburb:"Preston",years:1,roles:["Runner/PA","2nd AC"],bio:"Film school grad looking for set experience.",reel:false},
+{name:"Zara Bell",suburb:"Northcote",years:3,roles:["Sound recordist","Boom operator"],bio:"Location sound with a Sound Devices kit.",reel:true},
+{name:"Imani Cole",suburb:"Carlton",years:8,roles:["Production designer"],bio:"Period and sci-fi builds on low budgets.",reel:true},
+{name:"Ben Hughes",suburb:"Williamstown",years:1.5,roles:["Actor"],bio:"Theatre background, first screen roles.",reel:false}];
+let applied=new Set(),filt={q:"",role:"",pay:""},view="jobs";
+let me={name:"",suburb:"",years:"1",roles:"",bio:"",reel:"",port:"",pron:"",showSuburb:true};
+const $=s=>document.querySelector(s),app=$("#app");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=d=>new Date(d+"T00:00").toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short",year:"numeric"});
+function toast(t){const e=$("#toast");e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,2600)}
+function go(v){view=v;try{history.replaceState(null,"","#"+v)}catch(e){}render();window.scrollTo(0,0)}
+document.querySelector("nav").onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.v==="login"&&user){(async()=>{if(CONFIGURED)await sb.auth.signOut();user=null;applied=new Set();me={name:"",suburb:"",years:"1",roles:"",bio:"",reel:"",port:"",pron:"",showSuburb:true};toast("Logged out");render()})();return}go(b.dataset.v)};
+function opts(list,first){return `<option value="">${first}</option>`+list.map(r=>`<option>${r}</option>`).join("")}
+
+function render(){
+ if(CONFIGURED&&!user&&(view==="post"||view==="profile")){toast("Please log in first");view="login"}
+ document.querySelectorAll("nav button").forEach(b=>b.toggleAttribute("aria-current",b.dataset.v===view)||0);
+ document.querySelectorAll("nav button").forEach(b=>b.dataset.v===view?b.setAttribute("aria-current","page"):b.removeAttribute("aria-current"));
+ $("#authBtn").textContent=user?"Log out":"Log in";
+ ({jobs:rJobs,crew:rCrew,post:rPost,profile:rProfile,login:rLogin})[view]();
+}
+function rJobs(){
+ app.innerHTML=`<section class="hero"><h1>Find your next film set.</h1><p>Crew calls from Melbourne filmmakers, from first-time runners to seasoned gaffers. Paid and unpaid, short and long.</p></section>
+ <div class="filters"><input id="q" type="search" placeholder="Search role, film or suburb" aria-label="Search" value="${esc(filt.q)}">
+ <select id="r" aria-label="Role">${opts(ROLES,"All roles")}</select>
+ <select id="p" aria-label="Pay"><option value="">Paid and unpaid</option><option value="paid">Paid only</option><option value="unpaid">Unpaid only</option></select></div>
+ <p class="count" id="cnt"></p><div class="list" id="list"></div>`;
+ $("#r").value=filt.role;$("#p").value=filt.pay;
+ ["q","r","p"].forEach(i=>$("#"+i).oninput=e=>{filt[{q:"q",r:"role",p:"pay"}[i]]=e.target.value;list()});
+ list();
+}
+function list(){
+ const f=filt,q=f.q.toLowerCase();
+ const rs=jobs.filter(j=>(!f.role||j.role.includes(f.role)||f.role.includes(j.role))&&(!f.pay||(f.pay==="paid")===j.paid)&&(!q||(j.role+j.title+j.loc+j.by).toLowerCase().includes(q)));
+ $("#cnt").textContent=rs.length+(rs.length===1?" vacancy":" vacancies");
+ $("#list").innerHTML=rs.length?rs.map(j=>`<article class="card"><div class="top"><div><h3>${esc(j.role)}</h3><div class="by">${esc(j.title)} · posted by ${esc(j.by)}</div></div><span class="tag ${j.paid?"paid":"unpaid"}">${j.paid?"Paid":"Unpaid"}</span></div>
+ <div class="meta"><span>${fmt(j.date)}</span><span>${esc(j.loc)}</span></div>
+ ${j.logline?`<p class="logline">${esc(j.logline)}</p>`:""}
+ ${j.gear?`<div class="gear">${esc(j.gear)}</div>`:""}
+ <div><button class="btn" data-a="${j.id}" ${applied.has(j.id)?"disabled":""}>${applied.has(j.id)?"Applied":"Apply for this role"}</button></div></article>`).join(""):`<div class="empty">No vacancies match those filters. Clear a filter, or post your own crew call.</div>`;
+ document.querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>openApply(+b.dataset.a));
+}
+function openApply(id){
+ if(!user){pending=id;toast("Log in to apply");go("login");return}
+ const j=jobs.find(x=>x.id===id);$("#dTitle").textContent="Apply: "+j.role;$("#dSub").textContent=j.title+" · "+fmt(j.date);
+ $("#dMsg").value="";$("#dlg").dataset.id=id;$("#dlg").showModal();
+}
+$("#dlg").addEventListener("close",async()=>{const dl=$("#dlg"),ok=dl.returnValue==="send",id=+dl.dataset.id;dl.returnValue="";
+ if(!ok)return;
+ if(CONFIGURED){const r=await sb.from("applications").insert({vacancy_id:id,message:$("#dMsg").value});if(r.error&&r.error.code!=="23505"){toast(r.error.message);return}}
+ applied.add(id);toast("Application sent");if(view==="jobs")list()});
+function rCrew(){
+ app.innerHTML=`<section class="hero"><h1>Find crew near you.</h1><p>Browse filmmakers by role and skill level. Everyone here has chosen what to share.</p></section>
+ <div class="filters"><select id="cr" aria-label="Role">${opts(ROLES,"All roles")}</select>
+ <input id="cl" type="number" min="1" step="any" placeholder="Min. years of experience" aria-label="Minimum years of experience" style="flex:1 1 180px;width:auto"></div><div class="grid" id="g"></div>`;
+ const draw=()=>{const r=$("#cr").value,l=$("#cl").value;
+  const all=(me.name&&!CONFIGURED)?[{name:me.name+" (you)",suburb:me.showSuburb?me.suburb:"",years:Math.max(1,+me.years||1),roles:me.roles.split(",").map(s=>s.trim()).filter(Boolean),bio:me.bio,reel:!!me.reel},...crew]:crew;
+  const rs=all.filter(c=>(!r||c.roles.includes(r))&&(!l||c.years>=+l));
+  $("#g").innerHTML=rs.length?rs.map(c=>`<article class="card"><div><h3 style="font-size:21px">${esc(c.name)}</h3><div class="by">${+c.years} ${+c.years===1?"year":"years"} of experience${c.suburb?" · "+esc(c.suburb):""}</div></div>
+  <div class="chips">${c.roles.map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div><p style="margin:0;font-size:15px">${esc(c.bio)}</p>
+  <div class="by">${c.reel?"Showreel available":"No showreel yet"}</div><div><button class="btn ghost" data-m="${esc(c.name)}">Message</button></div></article>`).join(""):`<div class="empty" style="grid-column:1/-1">Nobody matches yet. Try a different role or level.</div>`;
+  document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>toast("Message sent to "+b.dataset.m.replace(" (you)","")))};
+ $("#cr").oninput=draw;$("#cl").oninput=draw;draw();
+}
+function rPost(){
+ app.innerHTML=`<h2 class="sec">Post a vacancy</h2><p class="hint" style="margin:0 0 20px">Tell crew what you need. Only the role, date and location are required.</p>
+ <form class="f" id="pf">
+ <label>Role to fill<select name="role" required>${opts(ROLES,"Choose a role")}</select></label>
+ <label>Film title<input name="title" required maxlength="60" placeholder="Working title is fine"></label>
+ <div class="row"><label>Date of production<input type="date" name="date" required></label>
+ <label>Location<input name="loc" required placeholder="Suburb, VIC"></label></div>
+ <label>Logline <small>Optional. One or two sentences about the film.</small><textarea name="logline" rows="2" maxlength="200"></textarea></label>
+ <fieldset style="border:0;padding:0;margin:0"><legend style="font-weight:600;font-size:15px;margin-bottom:6px">Pay</legend>
+ <div class="seg"><label><input type="radio" name="pay" value="paid" checked>Paid</label><label><input type="radio" name="pay" value="unpaid">Unpaid</label></div></fieldset>
+ <label>Gear requirements <small>Optional. What they need to bring, and what you provide.</small><textarea name="gear" rows="2"></textarea></label>
+ <div><button class="btn" type="submit">Publish vacancy</button></div></form>`;
+ $("#pf").onsubmit=async e=>{e.preventDefault();const d=new FormData(e.target);
+  const row={role:d.get("role"),title:d.get("title"),shoot_date:d.get("date"),location:d.get("loc"),logline:d.get("logline"),paid:d.get("pay")==="paid",gear:d.get("gear")};
+  if(CONFIGURED){const r=await sb.from("vacancies").insert(row);if(r.error){toast(r.error.message);return}await loadData()}
+  else jobs.unshift({id:Date.now(),role:row.role,title:row.title,by:me.name||"You",date:row.shoot_date,loc:row.location,logline:row.logline,paid:row.paid,gear:row.gear});
+  toast("Published");go("jobs")};
+}
+function rProfile(){
+ app.innerHTML=`<h2 class="sec">My profile</h2><p class="hint" style="margin:0 0 20px">Share what helps people hire you. Everything here is your choice.</p>
+ <div class="note" style="margin-bottom:22px"><h3>What we don’t ask for</h3><p style="margin:0">Crew Call doesn’t collect your age, gender or religion. Hiring should be about your skills, not your identity. Pronouns are optional and shown only if you add them.</p></div>
+ <form class="f" id="pr">
+ <label>Display name<input name="name" required value="${esc(me.name)}"></label>
+ <div class="row"><label>Suburb <small>Helps people find nearby crew</small><input name="suburb" value="${esc(me.suburb)}"></label>
+ <label>Years of experience <small>Minimum 1. Decimals are fine, e.g. 2.5</small><input type="number" name="years" min="1" step="any" required value="${esc(me.years)}"></label></div>
+ <label class="chk"><input type="checkbox" name="showSuburb" ${me.showSuburb?"checked":""}>Show my suburb on my public profile</label>
+ <label>Roles you do <small>Separate with commas, e.g. DOP, 1st AC</small><input name="roles" value="${esc(me.roles)}"></label>
+ <label>About you<textarea name="bio" rows="3" maxlength="300">${esc(me.bio)}</textarea></label>
+ <div class="row"><label>Showreel link<input type="url" name="reel" placeholder="https://vimeo.com/…" value="${esc(me.reel)}"></label>
+ <label>Portfolio link<input type="url" name="port" placeholder="https://…" value="${esc(me.port)}"></label></div>
+ <label>Pronouns <small>Optional</small><input name="pron" value="${esc(me.pron)}"></label>
+ <div><button class="btn" type="submit">Save profile</button></div></form>`;
+ $("#pr").onsubmit=async e=>{e.preventDefault();const d=new FormData(e.target);
+  const yrs=parseFloat(d.get("years"));if(!(yrs>=1)){toast("Experience must be 1 year or more");return}
+  me={name:d.get("name"),suburb:d.get("suburb"),years:String(yrs),roles:d.get("roles"),bio:d.get("bio"),reel:d.get("reel"),port:d.get("port"),pron:d.get("pron"),showSuburb:d.has("showSuburb")};
+  if(CONFIGURED){const r=await sb.from("profiles").upsert({id:user.id,name:me.name,suburb:me.suburb,show_suburb:me.showSuburb,years:yrs,roles:me.roles.split(",").map(x=>x.trim()).filter(Boolean),bio:me.bio,reel_url:me.reel,portfolio_url:me.port,pronouns:me.pron});if(r.error){toast(r.error.message);return}await loadData()}
+  toast("Profile saved")};
+}
+let user=null,pending=null,mode="login";
+function rLogin(){
+ const j=pending&&jobs.find(x=>x.id===pending);
+ app.innerHTML=`<h2 class="sec">${mode==="login"?"Log in":"Create your account"}</h2>
+ <p class="hint" style="margin:0 0 20px">${j?`You need an account to apply for ${esc(j.role)} on ${esc(j.title)}.`:"Log in to apply for roles and post vacancies."}</p>
+ <div class="seg" style="max-width:620px;margin-bottom:16px"><label><input type="radio" name="m" value="login" ${mode==="login"?"checked":""}>Log in</label><label><input type="radio" name="m" value="signup" ${mode==="signup"?"checked":""}>Create account</label></div>
+ <form class="f" id="lf">${mode==="signup"?`<label>Display name<input name="name" required></label>`:""}
+ <label>Email<input type="email" name="email" required autocomplete="email"></label>
+ <label>Password<input type="password" name="pw" required minlength="8" autocomplete="${mode==="login"?"current-password":"new-password"}"></label>
+ <div><button class="btn" type="submit">${mode==="login"?"Log in":"Create account"}</button></div>
+ <p class="hint">${CONFIGURED?"Use at least 8 characters. Four random words make a strong, memorable passphrase.":"Prototype only: any email and a password of 8 or more characters will work."}</p></form>`;
+ document.querySelectorAll("[name=m]").forEach(r=>r.onchange=()=>{mode=r.value;rLogin()});
+ $("#lf").onsubmit=async e=>{e.preventDefault();const d=new FormData(e.target);
+  const email=d.get("email"),pw=d.get("pw");
+  if(CONFIGURED){let r;
+   if(mode==="signup")r=await sb.auth.signUp({email,password:pw,options:{data:{name:d.get("name")}}});
+   else r=await sb.auth.signInWithPassword({email,password:pw});
+   if(r.error){toast(r.error.message);return}
+   if(!r.data.session){toast("Check your email to confirm your account, then log in");return}
+   await setUser(r.data.user);await loadData();
+  }else{user={email,name:d.get("name")||email.split("@")[0]};if(!me.name)me.name=user.name}
+  const p=pending;pending=null;toast(mode==="login"?"Logged in":"Account created");go("jobs");if(p)openApply(p)};
+}
+const h=location.hash.slice(1);if(["jobs","crew","post","profile"].includes(h))view=h;
+async function setUser(u){
+ if(!u){user=null;return}
+ user={id:u.id,email:u.email,name:(u.user_metadata&&u.user_metadata.name)||u.email.split("@")[0]};
+ let p=(await sb.from("profiles").select("*").eq("id",u.id).maybeSingle()).data;
+ if(!p){p=(await sb.from("profiles").insert({id:u.id,name:user.name}).select().single()).data}
+ if(p)me={name:p.name,suburb:p.suburb||"",years:String(p.years||1),roles:(p.roles||[]).join(", "),bio:p.bio||"",reel:p.reel_url||"",port:p.portfolio_url||"",pron:p.pronouns||"",showSuburb:p.show_suburb!==false};
+ const a=await sb.from("applications").select("vacancy_id").eq("applicant",u.id);
+ applied=new Set((a.data||[]).map(x=>x.vacancy_id));
+}
+async function loadData(){
+ if(!CONFIGURED)return;
+ const [v,p]=await Promise.all([sb.from("vacancies").select("*").order("created_at",{ascending:false}),sb.from("profiles").select("*")]);
+ if(v.error||p.error){toast("Could not load data");return}
+ const names={};p.data.forEach(x=>names[x.id]=x.name);
+ jobs=v.data.map(r=>({id:r.id,role:r.role,title:r.title,by:names[r.owner]||"A filmmaker",date:r.shoot_date,loc:r.location,logline:r.logline||"",paid:r.paid,gear:r.gear||""}));
+ crew=p.data.map(x=>({name:x.name,suburb:x.show_suburb?(x.suburb||""):"",years:x.years,roles:x.roles||[],bio:x.bio||"",reel:!!x.reel_url}));
+}
+(async()=>{
+ if(CONFIGURED){jobs=[];crew=[];
+  const ss=await sb.auth.getSession();
+  if(ss.data.session)await setUser(ss.data.session.user);
+  await loadData();}
+ render();
+})();
+</script>
+</body>
+</html>
